@@ -1,0 +1,6 @@
+.idea/
+RegioHeldenTest/local_settings.py
+*.pyc
+*.pyo
+RegioHeldenTest/__pycache__/
+db.sqlite3

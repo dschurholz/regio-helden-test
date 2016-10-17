@@ -1,0 +1,12 @@
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'regioheldentest',
+        'USER': 'regioheld',
+        'PASSWORD': '*******',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
