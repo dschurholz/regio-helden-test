@@ -19,3 +19,6 @@ class Customer(models.Model):
         settings.AUTH_USER_MODEL, null=True,
         on_delete=models.SET(get_sentinel_user),
         related_name='customers_added')
+
+    def __str__(self):
+        return " ".join([self.first_name, self.last_name])
