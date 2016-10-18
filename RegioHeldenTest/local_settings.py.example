@@ -10,3 +10,7 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '<google-oauth2-key-for-this-project>'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '<google-oauth2-secret-for-this-project>'

@@ -1,12 +1,9 @@
 from django.db import models
 from django.conf import settings
-from django.contrib.auth import get_user_model
 
 from django_iban.fields import IBANField
 
-
-def get_sentinel_user():
-    return get_user_model().objects.get_or_create(username='deleted')[0]
+from accounts.utils import get_sentinel_user
 
 
 class Customer(models.Model):
@@ -22,3 +19,10 @@ class Customer(models.Model):
 
     def __str__(self):
         return " ".join([self.first_name, self.last_name])
+
+    def created_by_email_display(self):
+        if self.created_by == get_sentinel_user():
+            return '(DELETED)'
+        return self.created_by.email
+    created_by_email_display.short_description = 'created by'
+    created_by_email_display.admin_order_field = 'created_by__email'
