@@ -8,6 +8,19 @@ This repository contains a django test project with the following characteristic
  - Admins should be able to create, read, update and delete customers.
  - Admins can only manipulate customers they created.
 
+### Used technologies and python dependencies
+
+ - Python 3.5
+ - Postgresql 9.5
+ - [Django](https://github.com/django/django)
+ - [Psycopg2](https://github.com/psycopg/psycopg2)
+ - [Python Social Auth](https://github.com/omab/python-social-auth)
+ - [Django Iban Field](https://github.com/Chedi/django-iban-field)
+ - [Django Dynamic Fixture](https://github.com/paulocheque/django-dynamic-fixture)
+ - [Django Suit](https://github.com/darklow/django-suit)
+
+For the exact versions check the [requirements.txt](https://github.com/dschurholz/regio-helden-test/blob/master/requirements.txt) file
+
 ## Installing Regio Helden Test
 
 Some requirements before installing regio-helden-test:
