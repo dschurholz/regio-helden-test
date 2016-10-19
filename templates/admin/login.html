@@ -1,5 +1,6 @@
 {% extends "admin/login.html" %}
-{% load i18n static %}
+{% load i18n admin_static suit_tags %}
+{% load url from suit_compat %}
 
 {% block content %}
 {% if form.errors and not form.non_field_errors %}
@@ -26,10 +27,10 @@
 {% endblocktrans %}
 </p>
 {% endif %}
-
-<form action="{% url 'social:begin' backend='google-oauth2' %}" method="get" id="login-form">{% csrf_token %}
+<h1><i class="icon-lock icon-white"></i> {{ 'ADMIN_NAME'|suit_conf }}</h1>
+<form action="{% url 'social:begin' backend='google-oauth2' %}" method="get" id="login-form">
   <div class="submit-row">
-    <label>&nbsp;</label><input type="submit" value="{% trans 'Log in with Google Apps' %}" />
+    <label>&nbsp;</label><input type="submit" value="{% trans 'Log in with Google Apps' %}" class="btn btn-info"/>
   </div>
 </form>
 
