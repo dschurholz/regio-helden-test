@@ -1,4 +1,14 @@
-# Installing Regio Helden Test
+# Regio Helden Test
+
+This repository contains a django test project with the following characteristics:
+
+ - Admin users can manage CRUD Users, who will be called customers.
+ - Customers have a First Name, Last Name and IBAN (standarized bank account number).
+ - Admins of the app should authenticate using a Google account.
+ - Admins should be able to create, read, update and delete customers.
+ - Admins can only manipulate customers they created.
+
+## Installing Regio Helden Test
 
 Some requirements before installing regio-helden-test:
 
@@ -45,3 +55,9 @@ Then you are ready to run
     $ ./manage.py runserver
 
 to test you can got to [http://localhost:8000/admin](http://localhost:8000/admin)
+
+## Testing
+
+To run the test suite, please use the following command, from the project root directory:
+
+    $ ./manage.py test --settings=RegioHeldenTest.test_settings 
