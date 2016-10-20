@@ -73,4 +73,14 @@ to test you can got to [http://localhost:8000/admin](http://localhost:8000/admin
 
 To run the test suite, please use the following command, from the project root directory:
 
-    $ ./manage.py test --settings=RegioHeldenTest.test_settings 
+    $ ./manage.py test --settings=RegioHeldenTest.test_settings
+
+## Running the testing environment with vagrant
+
+To intall the vagrant machine go to the vagrant directory and execute:
+
+    $ vagrant up
+
+when the configuration finishes, run the shell script with the test command:
+
+    $ sh run_tests.sh
