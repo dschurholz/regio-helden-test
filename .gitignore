@@ -4,3 +4,4 @@ RegioHeldenTest/local_settings.py
 *.pyo
 RegioHeldenTest/__pycache__/
 db.sqlite3
+vagrant/.vagrant
