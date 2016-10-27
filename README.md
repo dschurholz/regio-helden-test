@@ -81,6 +81,14 @@ To intall the vagrant machine go to the vagrant directory and execute:
 
     $ vagrant up
 
-when the configuration finishes, run the shell script with the test command:
+when the configuration finishes, run the shell script with the following commands:
 
-    $ sh run_tests.sh
+    $ sh run.sh -[s|d|r|l|t|h]
+
+Options for the RegioHeldenTest program:
+ - `s: Start a new screen process with django runserver on port 8000.`
+ - `d: Stop the django runserver screen process and remove dead processes.`
+ - `r: Reload the django runserver screen process (same as start/stop).`
+ - `l: Check the status of the screen processes.`
+ - `t: Execute the django test suite.`
+ - `h: Help.`
