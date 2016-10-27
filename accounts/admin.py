@@ -11,6 +11,15 @@ class CustomerAdmin(admin.ModelAdmin):
         "iban", "first_name", "last_name", "created_by_email_display")
     search_fields = ("first_name", "last_name", "iban")
 
+    # For restricting delete, update and read actions
+    def get_queryset(self, request):
+        qs = super(CustomerAdmin, self).get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(created_by=request.user)
+
+    """
+    # For only restricting delete and update actions, but not read
     def has_change_permission(self, request, obj=None):
         if (obj is not None and obj.created_by != request.user and
                 obj.created_by != get_sentinel_user()):
@@ -34,6 +43,7 @@ class CustomerAdmin(admin.ModelAdmin):
                 ))
                 return False
         return True
+    """
 
     def save_model(self, request, obj, form, change):
         obj.created_by = request.user

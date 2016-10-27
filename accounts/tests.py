@@ -75,7 +75,7 @@ class UserManagementTest(TestCase):
         change_customer_url = reverse(
             'admin:accounts_customer_change', args=(self.customer.id,))
         response = self.client.get(change_customer_url,)
-        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.status_code, 404)
 
     def test_customer_delete_allowed(self):
         self.client.force_login(
@@ -93,7 +93,7 @@ class UserManagementTest(TestCase):
         delete_customer_url = reverse(
             'admin:accounts_customer_delete', args=(self.customer.id,))
         response = self.client.get(delete_customer_url)
-        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.status_code, 404)
 
     def test_customer_bulk_delete_allowed(self):
         self.client.force_login(
@@ -107,6 +107,8 @@ class UserManagementTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(Customer.objects.all().count(), 0)
 
+    """
+    # In case of removing read restrictions on admins
     def test_customer_bulk_delete_not_allowed(self):
         self.client.force_login(
             self.user_2, backend='django.contrib.auth.backends.ModelBackend')
@@ -118,3 +120,4 @@ class UserManagementTest(TestCase):
         }, follow=True)
         self.assertEqual(response.status_code, 403)
         self.assertEqual(Customer.objects.all().count(), 1)
+    """
