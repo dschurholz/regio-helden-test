@@ -28,7 +28,7 @@ Vagrant.configure(2) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network "forwarded_port", guest: 8000, host: 8080
+  config.vm.network "forwarded_port", guest: 8000, host: 8000
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -46,6 +46,7 @@ Vagrant.configure(2) do |config|
 
   # Sync current folder on host to your project folder on guest machine.
   config.vm.synced_folder("../../RegioHeldenTest", "/home/vagrant/RegioHeldenTest")
+  config.vm.synced_folder("puppet", "/etc/puppet/")
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -57,28 +58,25 @@ Vagrant.configure(2) do |config|
   
     # Customize the amount of memory on the VM:
     vb.memory = "1024"
+    vb.customize ['modifyvm', :id, '--name', 'regioheldentest']
   end
 
-  # View the documentation for the provider you are using for more
-  # information on available options.
+  config.vm.hostname = "regioheldentest"
 
-  # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies
-  # such as FTP and Heroku are also available. See the documentation at
-  # https://docs.vagrantup.com/v2/push/atlas.html for more information.
-  # config.push.define "atlas" do |push|
-  #   push.app = "YOUR_ATLAS_USERNAME/YOUR_APPLICATION_NAME"
-  # end
+  # Needed in order to run screen
+  # config.ssh.pty = true
 
-  # Enable provisioning with a shell script. Additional provisioners such as
-  # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
-  # documentation for more information about their specific syntax and use.
-  # config.vm.provision "shell", inline: <<-SHELL
-  #   sudo apt-get update
-  #   sudo apt-get install -y apache2
-  # SHELL
+  # This shell provisioner installs librarian-puppet and runs it to install
+  # puppet modules. This has to be done before the puppet provisioning so that
+  # the modules are available when puppet tries to parse its manifests.
+  config.vm.provision :shell do |shell|
+    shell.path = "shell/librarian-puppet.sh"
+  # uncomment the next line if you want to install the librarian-ruby gem instead the package
+    shell.args = "-g"
+  end
 
   config.vm.provision "puppet" do |puppet|
-    puppet.manifests_path = "manifests"
+    puppet.manifests_path = "puppet/manifests"
     puppet.manifest_file = "site.pp"
     puppet.facter = {
       "proj_dir"      => vpdj_config["proj_dir"],

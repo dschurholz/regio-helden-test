@@ -5,3 +5,7 @@ RegioHeldenTest/local_settings.py
 RegioHeldenTest/__pycache__/
 db.sqlite3
 vagrant/.vagrant
+vagrant/puppet/.librarian
+vagrant/puppet/.tmp
+vagrant/puppet/ssl
+vagrant/puppet/modules

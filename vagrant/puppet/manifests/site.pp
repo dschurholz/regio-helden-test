@@ -7,7 +7,8 @@ Exec {
 class dev {
 
     class {
-        init: before => Class[django_conf];
+        init: before => Class[postgresql, django_conf];
+        postgresql: before => Class[django_conf];
         django_conf:;
     }
 }
